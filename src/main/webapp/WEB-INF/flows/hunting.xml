@@ -3,5 +3,41 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
       http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+    <view-state id="home" view="index">
+        <transition on="start" to="viewCountries"/>
+    </view-state>
+    
+    <view-state id="viewCountries" view="countries">
+        <on-render>
+            <evaluate expression="treasureHuntService.getCountries()" result="flashScope.countries"/>
+        </on-render>
+        <transition on="findTreasure" to="viewTreasures"/>
+        <on-exit>
+            <evaluate expression="requestParameters.country" result="flashScope.country"/>
+        </on-exit>
+    </view-state>
+
+    <view-state id="viewTreasures" view="treasures">
+        <on-render>
+            <evaluate expression="treasureHuntService.getTreasureOfCountry(flashScope.country)" result="flashScope.treasure"/>
+        </on-render>
+        <transition on="continue" to="viewCountries"/>
+        <transition on="pickUp" to="pickTreasure"/>
+    </view-state>
+
+    <action-state id="pickTreasure">
+        <evaluate expression="treasureHuntService.addTreasure(requestParameters.country)"/>
+        <transition to="isSuccess"/>
+    </action-state>
+    
+    <decision-state id="isSuccess">
+        <if test="treasureHuntService.getTreasureOfCountry().isEmpty()" then="success" else="viewCountries"/>
+    </decision-state>
+
+    <view-state id="success" view="success">
+        <on-render>
+            <evaluate expression="treasureHuntService.getScore()" result="flashScope.score"/>
+        </on-render>
+    </view-state>
 
 </flow>

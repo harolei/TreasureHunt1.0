@@ -7,12 +7,12 @@
 <body>
 
 <div class="wrapper">
-    <h1>Treasure Game</h1>
-    <p class="desc">
-        This is a treasure finding game. You need to go to different countries to find the treasure.
-    </p>
-
-    <a href="${flowExecutionUrl}&_eventId=start">Start Game</a>
+    <h1>Country</h1>
+    <ul>
+    <c:forEach var="country" items="${countries}">
+    <li><a href="${flowExecutionUrl}&_eventId=findTreasure&country=${country}">${country}</a></li>
+    </c:forEach>
+    </ul>
 </div>
 </body>
 </html>

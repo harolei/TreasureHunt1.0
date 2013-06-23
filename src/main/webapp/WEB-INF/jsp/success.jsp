@@ -7,12 +7,8 @@
 <body>
 
 <div class="wrapper">
-    <h1>Treasure Game</h1>
-    <p class="desc">
-        This is a treasure finding game. You need to go to different countries to find the treasure.
-    </p>
-
-    <a href="${flowExecutionUrl}&_eventId=start">Start Game</a>
+    <h1>Success</h1>
+    <h3>Your score is: "${score}"</h3>
 </div>
 </body>
 </html>

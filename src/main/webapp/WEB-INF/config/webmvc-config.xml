@@ -3,9 +3,12 @@
         xmlns="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:context="http://www.springframework.org/schema/context"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd">
     <!--3.2.1 start-->
-    <!--<context:component-scan base-package="com.webflow.treasure.services" />-->
+    <context:component-scan base-package="com.leiyu.TresureHunt.service" />
     <!--3.2.1 end-->
 
     <bean id="viewResolver"
@@ -18,9 +21,10 @@
 
     <bean id="viewMappings"
           class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-        <!--<property name="mappings">-->
-        <!--<value>/hunting.do=flowController </value>-->
-        <!--</property>-->
+        <property name="mappings">
+        <value>/hunting.do=flowController </value>
+        </property>
+
         <property name="defaultHandler">
         <bean class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
         </property>
